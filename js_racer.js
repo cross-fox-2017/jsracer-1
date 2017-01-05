@@ -79,7 +79,7 @@ class JSRacer {
     this.running()
   }
 
-  win(){
+  searchWinner(){
     while (this.finished == false){
       this.finishLine()
     }
@@ -95,11 +95,5 @@ class JSRacer {
     }
   }
 }
-
-var Berkuda = new JSRacer(["A", "B", "C"], 20, 6)
-
-console.log(Berkuda.startingBoard());
-console.log(Berkuda.win());
-
 
 export default JSRacer
