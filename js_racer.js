@@ -9,10 +9,12 @@ class JSRacer {
     this.length = length;
     this.sides = sides;
     this.finished = false;
+    this.winner = ""
     this.board = []
     this.bigger = []
     this.pos = []
   }
+
   startingBoard(){
     for (let o = 0; o < this.banyakPemain; o++){
       this.board[o] = []
@@ -28,6 +30,7 @@ class JSRacer {
     }
     return this.bigger
   }
+
   giliran(){
     for (let i = 0; i < this.banyakPemain; i++){
       let dadu = new Dice(this.sides)
@@ -35,6 +38,7 @@ class JSRacer {
     }
     return this.bigger
   }
+
   gerak(){
     this.bigger = []
     for (let o = 0; o < this.banyakPemain; o++){
@@ -50,11 +54,34 @@ class JSRacer {
     }
     return this.bigger
   }
+
   running(){
     for (let i = 0; i < this.board.length; i++){
       console.log(this.board[i].join(" | "));
     }
     return ""
+  }
+
+  finishLine(){
+    if (this.finished == false){
+      for (let i = 0; i < this.banyakPemain; i++){
+        if (this.pos[i] >= this.length){
+          this.winner = `The Winner is ${this.players[i]} `
+          this.finished = true
+        }
+      }
+    } else {
+      this.giliran()
+      this.gerak()
+      this.running()
+    }
+  }
+
+  winner(){
+    while (this.finished == false){
+      this.finishLine()
+    }
+    return this.winner
   }
 }
   // print_board() {
@@ -102,11 +129,12 @@ class JSRacer {
 var Berkuda = new JSRacer(["A", "B", "C"], 20, 6)
 var dadu = new Dice(6)
 Berkuda.startingBoard();
-Berkuda.giliran();
-Berkuda.giliran();
-Berkuda.giliran();
-Berkuda.gerak()
-console.log(Berkuda.running());
+// Berkuda.giliran();
+// Berkuda.giliran();
+// Berkuda.giliran();
+// Berkuda.gerak()
+// console.log(Berkuda.running());
+console.log(Berkuda.winner());
 
 
 // console.log(dadu.roll());
