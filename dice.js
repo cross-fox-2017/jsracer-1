@@ -1,11 +1,11 @@
 "use strict"
 
 class Dice {
-  constructor() {
-
+  constructor(sides) {
+    this.sides = sides
   }
   roll() {
-    
+    return Math.Ceil(Math.random()*sides)
   }
 }
 
