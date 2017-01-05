@@ -28,7 +28,7 @@ class JSRacer {
       }
       this.bigger.push(this.board[o].join(" | "))
     }
-    return this.bigger
+    return this.running()
   }
 
   giliran(){
@@ -57,85 +57,47 @@ class JSRacer {
 
   running(){
     for (let i = 0; i < this.board.length; i++){
-      console.log(this.board[i].join(" | "));
+      console.log(`${this.board[i].join(" | ")}\n`);
     }
     return ""
   }
 
   finishLine(){
-    if (this.finished == false){
-      for (let i = 0; i < this.banyakPemain; i++){
-        if (this.pos[i] >= this.length){
-          this.winner = `The Winner is ${this.players[i]} `
-          this.finished = true
-        }
+    for (let i = 0; i < this.banyakPemain; i++){
+      if (this.pos[i] >= this.length){
+        this.winner = `The Winner is ${this.players[i]} `
+        this.finished = true
+        break;
       }
-    } else {
-      this.giliran()
-      this.gerak()
-      this.running()
     }
+    this.giliran()
+    this.gerak()
+    console.log("\x1B[2J")
+    this.sleep(1000)
+    this.running()
   }
 
-  winner(){
+  win(){
     while (this.finished == false){
       this.finishLine()
     }
     return this.winner
   }
+
+  sleep(milliseconds) {
+    var start = new Date().getTime();
+    for (var i = 0; i < 1e7; i++) {
+      if ((new Date().getTime() - start) > milliseconds) {
+        break;
+      }
+    }
+  }
 }
-  // print_board() {
-  //   for (let i = 0; i < this.players.length; i++){
-  //     this.bigger.push(this.print_line(this.players[i], 0))
-  //   }
-  //   return this.bigger
-  // }
-  // //done
-  // print_line(player, pos=0) {
-  //   for (let i = 0; i < this.length; i++){
-  //     if (i != pos){
-  //       this.board.push("--")
-  //     } else {
-  //       this.board.push(player)
-  //     }
-  //   }
-  //   return this.board.join(" | ")
-  // }
-  // advancing(players) {
-  //   let dadu = new Dice(6)
-  //   this.pos += dadu.roll()
-  //   this.board = []
-  //   return this.print_line(players, this.pos)
-  // }
-  // finished() {
-  //   if (this.pos >= this.length){
-  //     this.finished == true
-  //   } else {
-  //     this.advancing("A")
-  //   }
-  // }
-  // winner() {
-  //   if (finished == true){
-  //     return winPlayer
-  //   } else {
-  //     finished()
-  //   }
-  // }
-  // reset_board() {
-  //   console.log("\x1B[2J")
-  // }
-// }
 
 var Berkuda = new JSRacer(["A", "B", "C"], 20, 6)
-var dadu = new Dice(6)
-Berkuda.startingBoard();
-// Berkuda.giliran();
-// Berkuda.giliran();
-// Berkuda.giliran();
-// Berkuda.gerak()
-// console.log(Berkuda.running());
-console.log(Berkuda.winner());
+
+console.log(Berkuda.startingBoard());
+console.log(Berkuda.win());
 
 
-// console.log(dadu.roll());
 export default JSRacer
