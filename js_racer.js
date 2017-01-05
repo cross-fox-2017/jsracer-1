@@ -46,9 +46,13 @@ class JSRacer {
       for (let i = 0; i < this.length; i++){
         if (i == this.pos[o]){
           this.board[o].push(this.players[o])
-        } else if (this.pos > this.length){
-          this.board[o].push(this.players[o])
-        } else {
+        }
+        // else if (this.pos[o] >= this.length){
+          // if (i == this.length){
+          // this.board[o].push(this.players[o])
+          // }
+        // }
+        else {
           this.board[o].push("--")
         }
       }
