@@ -11,23 +11,21 @@ class JSRacer {
     this.board = []
   }
   print_board() {
-    for (let i = 0; i < this.players.length; i++) {
-      this.board.push([])
-      for (let j = 0; j < this.length; j++){
-        this.board[i].push([" | "])
+
+  //done
+  print_line(player, pos=0) {
+    for (let i = 0; i < this.length; i++){
+      if (i != pos){
+        this.board.push("--")
+      } else {
+        this.board.push(player)
       }
     }
-    for (let k = 0; k < this.players.length; k++) {
-      this.board[k] = this.board[k].join(" | ")
-    }
-    return this.board
-  }
-  print_line(player, pos) {
-
+    return this.board.join(" | ")
   }
   advancing(players) {
-    for (var i = 0; i < players.length; i++){
-      var dadu = new Dice(6)
+    for (let i = 0; i < players.length; i++){
+      let dadu = new Dice(6)
       playerpos[i] += dadu.roll()
     }
   }
@@ -52,6 +50,6 @@ class JSRacer {
 
 var Berkuda = new JSRacer(["A", "B", "C"], 20, 6)
 var dadu = new Dice(6)
-console.log(Berkuda.print_board());
+console.log(Berkuda.print_line("A", 10));
 // console.log(dadu.roll());
 export default JSRacer
