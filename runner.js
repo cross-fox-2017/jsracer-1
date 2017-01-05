@@ -12,3 +12,13 @@ function sleep(milliseconds) {
 }
 
 // Your code here...
+let runner = new JSRacer();
+
+runner.reset_board();
+
+for(let i = 0; i < 7;i++){
+
+  runner.print_board();
+  sleep(500);
+  runner.reset_board();
+}
