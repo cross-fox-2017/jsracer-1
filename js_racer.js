@@ -46,6 +46,8 @@ class JSRacer {
       for (let i = 0; i < this.length; i++){
         if (i == this.pos[o]){
           this.board[o].push(this.players[o])
+        } else if (this.pos > this.length){
+          this.board[o].push(this.players[o])
         } else {
           this.board[o].push("--")
         }
@@ -72,8 +74,8 @@ class JSRacer {
     }
     this.giliran()
     this.gerak()
-    console.log("\x1B[2J")
-    this.sleep(1000)
+    // console.log("\x1B[2J")
+    // this.sleep(1000)
     this.running()
   }
 
