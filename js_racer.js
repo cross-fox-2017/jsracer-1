@@ -3,61 +3,51 @@
 import Dice from "./dice.js"
 
 class JSRacer {
-  constructor(players = 3, length = 10) {
-    this.players = players;
+  constructor(players = 5, length = 15) {
+    this.players = this.playerName(players);
     this.length = length;
-
-    this.playerBoard = [];
-    this.lengthBoard = '';
-
-    this.player = [];
-    this.playerNames = ['a','b','c','d','e'];
-
-    this.position = {};
-    this.board = [];
-
   }
-  playerName() {
-    for(let i = 0; i < this.players; i++){
-      this.player.push(this.playerNames[i]);
-      this.position[this.playerNames[i]] = 0;
-    };
+
+  playerName(count) {
+    let alphabet = ['a','b','c','d','e','f','g']
+    let arr = []
+    for(let i = 0; i < count; i++){
+      let player = {name: alphabet[i], pos: 0}
+      arr.push(player)
+    }
+    return arr;
   }
+
   print_board() {
-    this.playerName();
-    for(let i = 0; i < this.players; i++){
-      this.playerBoard = [];
-      this.board.push(this.playerBoard);
-      for(let j = 0; j < this.length; j++){
-        this.board[i].push(this.lengthBoard);
+    for(let i = 0; i < this.players.length; i++){
+      this.print_line(this.players[i]);
+      this.advanced_player(this.players[i]);
+
+    }
+  }
+  print_line(player) {
+    // Cetak per baris
+    let line = '';
+    for(let i = 0; i < this.length; i++){
+      if(player.pos === i){
+        line += `|${player.name}`;
+      } else {
+        line += '| ';
       }
     }
-    this.print_line();
-    this.advanced_player();
-    for(let j = 0; j < this.board.length; j++){
-      console.log(this.board[j].join("| "))
-    }
-  }
-  print_line() {
-    for(let i = 0; i < this.players; i++){
-      this.board[i][0] = this.player[i];
-    }
+    console.log(line);
   }
 
-  advanced_player() {
-    for(let i = 0; i < this.players; i++){
-      let roll = Dice.roll();
-      this.board[i][this.position[this.playerNames[i]]] = ' ';
-      this.board[i][roll] = this.player[i];
-      this.position[this.playerNames[i]] += roll;
-    }
-
+  advanced_player(player) {
+    // player maju
+    player.pos += Dice.roll()
   }
+
   finished() {
 
   }
   winner() {
-
+    console.log(`Player: ${player.name} is the winner`)
   }
   reset_board() {
     console.log("\x1B[2J")
