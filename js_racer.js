@@ -23,7 +23,7 @@ class JSRacer {
         if (i == 0){
           this.board[o].push(this.players[o])
         } else {
-          this.board[o].push("--")
+          this.board[o].push(" ")
         }
       }
       this.bigger.push(this.board[o].join(" | "))
@@ -53,7 +53,7 @@ class JSRacer {
           // }
         // }
         else {
-          this.board[o].push("--")
+          this.board[o].push(" ")
         }
       }
       this.bigger.push(this.board[o].join(" | "))
@@ -80,6 +80,7 @@ class JSRacer {
     this.gerak()
     // console.log("\x1B[2J")
     // this.sleep(1000)
+    console.log(`\n`);
     this.running()
   }
 
