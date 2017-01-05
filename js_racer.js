@@ -30,13 +30,31 @@ class JSRacer {
   }
   giliran(){
     for (let i = 0; i < this.banyakPemain; i++){
-      let dadu = new Dice(6)
-      this.pos[o] += dadu
+      let dadu = new Dice(this.sides)
+      this.pos[i] += dadu.roll()
+    }
+    return this.bigger
+  }
+  gerak(){
+    this.bigger = []
+    for (let o = 0; o < this.banyakPemain; o++){
+      this.board[o] = []
+      for (let i = 0; i < this.length; i++){
+        if (i == this.pos[o]){
+          this.board[o].push(this.players[o])
+        } else {
+          this.board[o].push("--")
+        }
+      }
+      this.bigger.push(this.board[o].join(" | "))
     }
     return this.bigger
   }
   running(){
-    for (let i = 0; i )
+    for (let i = 0; i < this.board.length; i++){
+      console.log(this.board[i].join(" | "));
+    }
+    return ""
   }
 }
   // print_board() {
@@ -83,8 +101,13 @@ class JSRacer {
 
 var Berkuda = new JSRacer(["A", "B", "C"], 20, 6)
 var dadu = new Dice(6)
-console.log(Berkuda.startingBoard());
-// console.log(Berkuda.finished());
+Berkuda.startingBoard();
+Berkuda.giliran();
+Berkuda.giliran();
+Berkuda.giliran();
+Berkuda.gerak()
+console.log(Berkuda.running());
+
 
 // console.log(dadu.roll());
 export default JSRacer
