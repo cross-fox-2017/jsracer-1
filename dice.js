@@ -1,12 +1,11 @@
 "use strict"
 
 class Dice {
-  constructor() {
 
+    roll() {
+    return Math.ceil(Math.random() * 6)
   }
-  roll() {
-    
-  }
+  
 }
 
-export default Dice
+// export default Dice
