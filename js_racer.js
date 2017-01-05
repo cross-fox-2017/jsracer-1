@@ -71,7 +71,7 @@ class JSRacer {
   finishLine(){
     for (let i = 0; i < this.banyakPemain; i++){
       if (this.pos[i] >= this.length){
-        this.winner = `The Winner is ${this.players[i]} `
+        this.winner = `The Winner is ${this.players[i]} \n pemenang adalah yang duluan keluar dari board`
         this.finished = true
         break;
       }
