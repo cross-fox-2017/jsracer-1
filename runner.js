@@ -11,4 +11,7 @@ function sleep(milliseconds) {
   }
 }
 
-// Your code here...
+var run = new JSRacer(4,10);
+run.print_board();
+run.print_player();
+run.play();
