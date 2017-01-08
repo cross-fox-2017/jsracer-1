@@ -3,9 +3,11 @@
 import Dice from "./dice.js"
 
 class JSRacer {
-  constructor(players = 5, length = 15) {
+  constructor(players = 3, length = 20) {
     this.players = this.playerName(players);
+    // this.players = [{name: a, pos: 0}. {name: b, pos: 0}, name: c, pos: 0]
     this.length = length;
+    this.finish = false;
   }
 
   playerName(count) {
@@ -20,38 +22,50 @@ class JSRacer {
 
   print_board() {
     for(let i = 0; i < this.players.length; i++){
-      this.print_line(this.players[i]);
-      this.advanced_player(this.players[i]);
-
+      if(this.finish){
+        break;
+      } else {
+        this.print_line(this.players[i]);
+        this.advanced_player(this.players[i]);
+        this.finished(this.players[i]);
+      }     
     }
   }
+
   print_line(player) {
-    // Cetak per baris
     let line = '';
     for(let i = 0; i < this.length; i++){
       if(player.pos === i){
         line += `|${player.name}`;
       } else {
-        line += '| ';
+        line += '[ ';
       }
     }
     console.log(line);
   }
 
   advanced_player(player) {
-    // player maju
     player.pos += Dice.roll()
+    if(player.pos >= this.length){
+      player.pos = this.length;
+    }
   }
 
-  finished() {
-
+  finished(player) {
+    if(player.pos >= this.length){
+      this.finish = true;
+      this.winner(player)
+    }
   }
-  winner() {
+  winner(player) {
     console.log(`Player: ${player.name} is the winner`)
   }
   reset_board() {
     console.log("\x1B[2J")
   }
 }
+
+let runner = new JSRacer();
+console.log(runner.playerName(5));
 
 export default JSRacer
