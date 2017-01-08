@@ -1,12 +1,10 @@
 "use strict"
 
 class Dice {
-  constructor() {
-
-  }
-  roll() {
-    
+  static roll() {
+    return Math.floor(Math.random() * 6 + 1);
   }
 }
 
 export default Dice
+//static: memanggil method tanpa harus membuat instansi class
