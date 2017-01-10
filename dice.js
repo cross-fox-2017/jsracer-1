@@ -4,9 +4,9 @@ class Dice {
   constructor() {
 
   }
-  roll() {
-    
+  static roll() {
+  	this.num = Math.floor(Math.random() *6)+1;
+    return this.num;
   }
 }
-
 export default Dice
