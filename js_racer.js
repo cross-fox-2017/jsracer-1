@@ -7,13 +7,20 @@ class JSRacer {
     // this.position = []
     this.players = [{name: 'a', pos: 0}, {name: 'b', pos: 0}]
     this.length = length || 20
+    this.status = false;
     // this.board = []
     // this.aWinner = false
   }
   print_board() {
+
     for (var i = 0; i < this.players.length; i++) {
-      this.print_line(this.players[i])
-      this.advanced_player(this.players[i])
+      if(this.status == false){
+        this.print_line(this.players[i])
+        this.advanced_player(this.players[i])
+      }else{
+        break;
+        return this
+      }
     }
     // for (var i = 0; i < 3; i++) {
     //   var row = []
@@ -33,6 +40,7 @@ class JSRacer {
     //   this.board[i][0] = user[i]
     // }
     // return this.board
+
     var arr = []
     for (var i = 0; i < this.length; i++) {
       if (player.pos == i) {
@@ -43,12 +51,18 @@ class JSRacer {
     }
     console.log(arr.join('|'));
   }
+
+
   advanced_player(player) {
     // while (!aWinner) {
     //
     // }
     var dice = new Dice()
     player.pos += dice.roll()
+    if (player.pos > this.length) {
+      console.log(`Player ${player.name} is Winner`);
+      this.status = true
+    }
   }
 
   finished() {

@@ -19,3 +19,6 @@ for (var i = 0; i < 6; i++) {
   sleep(2000)
   runner.reset_board()
 }
+
+
+// runner.print_board()
