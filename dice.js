@@ -5,7 +5,7 @@ class Dice {
     this.sides = sides
   }
   roll() {
-    return Math.Ceil(Math.random()*sides)
+    return Math.ceil(Math.random()*this.sides)
   }
 }
 
