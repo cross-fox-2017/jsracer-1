@@ -3,23 +3,25 @@
 import Dice from "./dice.js"
 
 class JSRacer {
-  constructor(playersTotal, length) {
+  constructor(players, length) {
     this.players = [];
     this.playerList = ['a','b','c','d','e']
-    this.totalPlayer = playersTotal
+    this.totalPlayer = players
     this.length = length || 30;
+    this.finish = false
   }
 
   playersList(){
     for(var i=0; i<this.totalPlayer; i++){
-      this.players.push({name: this.playerList[i], pos: 0})// initial position
+      this.players.push({name: this.player[i], pos: 0})// initial position
     }
   }
 
   print_board() {
       for(var i=0; i<this.players.length; i++){
-        this.print_line(this.players[i])
+        this.print_line(this.players[i],this.players[i])
         this.advanced_player(this.players[i])
+        //this.finished(this.players[i])
       }
   }
 
@@ -30,11 +32,11 @@ class JSRacer {
         line.push(" ")
       }
       else{
-        line.push(player.name)
+        line.push(player)
       }
     }
     console.log(line.join("|"));
-    this.finished(player)
+    finished(player)
   }
 
   advanced_player(player) {
@@ -43,7 +45,7 @@ class JSRacer {
 
   finished(player) {
     if(player.pos === this.length){
-      this.winner(player)
+      winner(player)
     }
   }
 

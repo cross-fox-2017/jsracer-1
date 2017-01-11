@@ -2,10 +2,9 @@
 
 class Dice {
   constructor() {
-
   }
-  roll() {
-    
+  static roll() {
+    return Math.floor(Math.random()*6)+1;
   }
 }
 

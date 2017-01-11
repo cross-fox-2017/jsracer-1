@@ -11,4 +11,9 @@ function sleep(milliseconds) {
   }
 }
 
+var runner = new JSRacer(3,30);
+
+
+runner.reset_board();
+runner.print_board();
 // Your code here...
