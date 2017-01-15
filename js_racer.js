@@ -9,56 +9,54 @@ class JSRacer {
     this.length = length;
     this.sides = sides;
     this.finished = false;
-    this.winner = ""
-    this.board = []
-    this.bigger = []
+    this.winner = "";
+    this.board = [];
+    this.bigger = [];
     this.pos = []
   }
 
   startingBoard(){
     for (let o = 0; o < this.banyakPemain; o++){
-      this.board[o] = []
-      this.pos[o] = 0
+      this.board[o] = [];
+      this.pos[o] = 0;
       for (let i = 0; i < this.length; i++){
         if (i == 0){
-          this.board[o].push(this.players[o])
+          this.board[o].push(this.players[o]);
         } else {
-          this.board[o].push(" ")
+          this.board[o].push(" ");
         }
       }
-      this.bigger.push(this.board[o].join(" | "))
+      this.bigger.push(this.board[o].join(" | "));
     }
-    return this.running()
+    return this.running();
   }
 
   giliran(){
     for (let i = 0; i < this.banyakPemain; i++){
       let dadu = new Dice(this.sides)
-      this.pos[i] += dadu.roll()
+      this.pos[i] += dadu.roll();
+      if (this.pos[i] + dadu.roll() >= this.length){
+        this.pos[i] = this.length;
+        break;
+      }
     }
-    return this.bigger
+    return this.bigger;
   }
 
   gerak(){
     this.bigger = []
     for (let o = 0; o < this.banyakPemain; o++){
-      this.board[o] = []
-      for (let i = 0; i < this.length; i++){
+      this.board[o] = [];
+      for (let i = 0; i < this.length+1; i++){
         if (i == this.pos[o]){
-          this.board[o].push(this.players[o])
-        }
-        // else if (this.pos[o] >= this.length){
-          // if (i == this.length){
-          // this.board[o].push(this.players[o])
-          // }
-        // }
-        else {
-          this.board[o].push(" ")
+          this.board[o].push(this.players[o]);
+        } else {
+          this.board[o].push(" ");
         }
       }
-      this.bigger.push(this.board[o].join(" | "))
+      this.bigger.push(this.board[o].join(" | "));
     }
-    return this.bigger
+    return this.bigger;
   }
 
   running(){
@@ -71,24 +69,23 @@ class JSRacer {
   finishLine(){
     for (let i = 0; i < this.banyakPemain; i++){
       if (this.pos[i] >= this.length){
-        this.winner = `The Winner is ${this.players[i]} \n pemenang adalah yang duluan keluar dari board`
-        this.finished = true
+        this.winner = `The Winner is ${this.players[i]}`;
+        this.finished = true;
         break;
       }
     }
-    this.giliran()
-    this.gerak()
-    // console.log("\x1B[2J")
-    // this.sleep(1000)
+    this.giliran();
+    this.gerak();
+    this.sleep(1000)
     console.log(`\n`);
-    this.running()
+    this.running();
   }
 
   searchWinner(){
     while (this.finished == false){
-      this.finishLine()
+      this.finishLine();
     }
-    return this.winner
+    return this.winner;
   }
 
   sleep(milliseconds) {
