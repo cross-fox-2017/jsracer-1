@@ -17,8 +17,21 @@ runner.reset_board();
 
 do {
   runner.print_board()
-  sleep(1500);
-  if(runner.finish === false){
-    runner.reset_board();
-  }
+  sleep(500);
+  runner.reset_board();
 } while (runner.finish === false)
+
+
+for(let i = 0; i < runner.players.length; i++){
+  if(runner.players[i].pos >= runner.length){
+    runner.players[i].pos = runner.length - 1;
+  }
+  runner.print_line(runner.players[i])
+}
+
+for(let i = 0; i < runner.players.length; i++){
+  if(runner.players[i].pos >= runner.length - 1){
+    console.log(`${runner.players[i].name} is the winner`)
+    break;
+  }
+}
