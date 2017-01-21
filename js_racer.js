@@ -3,41 +3,49 @@
 import Dice from "./dice.js"
 
 class JSRacer {
-  constructor(players, length, sides) {
-    this.pemain = [{name: 'A', pos: 0}, {name:'B', pos:0}]
-    this.panjang = length || 30;
+  constructor(players, length) {
+    this.players = [{name: 'A', pos: 0}, {name:'B', pos:0}, {name:'C', pos:0}]
+    this.length = length || 30;
+    this.finish = false
   }
-  startGame() {
-    for (let i = 0; i < array.length; i++) {
-      print_track(this.pemain[i])
-      diceRoll(this.pemain[i])
+
+  print_board(){
+    if (this.finish == false) {
+      for (var i = 0; i < this.players.length; i++) {
+          this.print_track(this.players[i])
+          this.diceRoll(this.players[i])
+          this.finished(this.players[i])
+      }
     }
   }
-  print_track(players) {
-    let arrTrack = []
-    for (let i = 0; i < this.panjang; i++) {
-      if (players.pos === i) {
-        arrTrack.push(players.name)
+
+  print_track(player) {
+    let track = ''
+    for (let i = 0; i < this.length; i++) {
+      if (player.pos == i) {
+        track += '|' + player.name
       }
       else {
-        arrTrack.push(' ')
+        track += '| '
       }
-      console.log(arrTrack.join("|"));
+    }
+    console.log(track);
+  }
+
+  diceRoll(player) {
+    player.pos += Dice.roll()
+  }
+
+  finished(player) {
+    if (player.pos >= this.length - 1) {
+      this.finish = true;
     }
   }
 
-  diceRoll(players) {
-    players += Dice.roll();
-  }
-  finished() {
-
-  }
-  winner() {
-
-  }
   reset_board() {
     console.log("\x1B[2J")
   }
+
 }
 
 export default JSRacer
