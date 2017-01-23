@@ -1,29 +1,22 @@
-"use strict"
-
-import Dice from "./dice.js"
-
-class JSRacer {
-  constructor(players, length, sides) {
-
+export class player {
+  constructor(codename, posEnd, track) {
+    this.codename= codename
+    this.posEnd = posEnd
+    this.track= track
   }
-  print_board() {
-
+  get name(){
+    return this.codename
   }
-  print_line(player, pos) {
-
+  get pos(){
+    return this.posEnd
   }
-  advanced_player(player) {
-
+  get tracks(){
+    return this.track
   }
-  finished() {
-
+  set tracks(val){
+    this.track=val
   }
-  winner() {
-
-  }
-  reset_board() {
-    console.log("\x1B[2J")
+  set pos(val){
+    this.posEnd=val
   }
 }
-
-export default JSRacer
